@@ -113,12 +113,14 @@ function sum() {
             sum+=arguments[i];
         }
     }
+    
     return sum;
+
   }
 
 function bindFunction(fn) {
     return fn(arguments);
-    
+
 }
 
 export {
