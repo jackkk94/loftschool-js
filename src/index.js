@@ -59,10 +59,19 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-var i=0;
-function returnCounter(number) {
-    return ++number;
+
+
+
+function returnCounter(counter=0){
+
+  return function () {
+    return ++counter;
 }
+  
+}
+var f = returnCounter();
+console.log(f());
+console.log(f());
 
 /*
  Задание 5 *:
@@ -109,6 +118,7 @@ function sum() {
 
 function bindFunction(fn) {
     return fn(arguments);
+    
 }
 
 export {
