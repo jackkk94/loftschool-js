@@ -118,6 +118,9 @@ function sum() {
 
   }
 
+
+
+  
 function bindFunction(fn) {
     return fn(arguments);
 
