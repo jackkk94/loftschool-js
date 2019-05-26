@@ -31,7 +31,9 @@ function returnFirstArgument(param) {
    sumWithDefaults(10) вернет 110
  */
 function sumWithDefaults(a, b = 100) {
-    return a+b;
+
+    return a + b;
+
 }
 
 /*
@@ -43,7 +45,9 @@ function sumWithDefaults(a, b = 100) {
    returnFnResult(() => 'привет') вернет 'привет'
  */
 function returnFnResult(fn) {
+
     return fn();
+  
 }
 
 /*
@@ -60,18 +64,12 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 13
  */
 
+function returnCounter(counter = 0) {
 
-
-function returnCounter(counter=0){
-
-  return function () {
-    return ++counter;
+    return function () {
+        return ++counter;
+    }
 }
-  
-}
-var f = returnCounter();
-console.log(f());
-console.log(f());
 
 /*
  Задание 5 *:
@@ -83,13 +81,15 @@ console.log(f());
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
 function returnArgumentsArray() {
-    var arr=[]
-    for (var i = 0; i < arguments.length; i++) {
-        arr.push(arguments[i])
-      }
-      return arr
-}
 
+    var arr = [];
+
+    for (var i = 0; i < arguments.length; i++) {
+        arr.push(arguments[i]);
+    }
+
+    return arr
+}
 
 /*
  Задание 6 *:
@@ -106,24 +106,24 @@ function returnArgumentsArray() {
 
    console.log(newSum()) выведет 6
  */
+
 function sum() {
-    var sum = 0;
-    for(var i=0;i<arguments.length;i++){
-        if(typeof(arguments[i]==Number)){
-            sum+=arguments[i];
-        }
+
+    let values = arguments[0];
+    let summ = 0;
+
+    for (let i = 0; i < values.length; i++) {
+        summ += values[i];
     }
-    
-    return sum;
 
-  }
+    return summ;
+}
 
+function bindFunction() {
 
+    var args = [].slice.call(arguments).slice(1);
 
-  
-function bindFunction(fn) {
-    return fn(arguments);
-
+    return sum(args);
 }
 
 export {
