@@ -36,9 +36,14 @@ function map(array, fn) {
 function reduce(array, fn, initial='undefined') {
   var arr=[];
   var value;
-  if(initial=='undefined') value=array[0];
+  var i=0;
+  if(initial=='undefined') 
+  {
+    value=array[0];
+    i+=1;
+  }
   else value=initial;
-  for(var i=0;i<array.length;i++){
+  for(var i;i<array.length;i++){
     value = fn(value,array[i],i,array)
   }
   return value;
