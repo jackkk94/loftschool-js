@@ -78,14 +78,15 @@ function findAllPSiblings(where) {
    findError(document.body) // функция должна вернуть массив с элементами 'привет' и 'loftschool'
  */
 function findError(where) {
-    var result = [];
+  var result = [];
 
-    for (var child of where.childNodes) {
-        result.push(child.innerText);
-    }
+  for (var child of where.children) {
+      result.push(child.innerText);
+  }
 
-    return result;
+  return result;
 }
+
 
 /*
  Задание 5:
@@ -100,6 +101,9 @@ function findError(where) {
    должно быть преобразовано в <div></div><p></p>
  */
 function deleteTextNodes(where) {
+  for(let i=0;i<where.childNodes.length;i++){
+    if(where.childNodes[i].nodeType==3) where.childNodes[i].remove()
+  }
 }
 
 /*
@@ -114,6 +118,17 @@ function deleteTextNodes(where) {
    должно быть преобразовано в <span><div><b></b></div><p></p></span>
  */
 function deleteTextNodesRecursive(where) {
+  
+    for(let i=0;i<where.childNodes.length;i++){
+      if(where.childNodes.length == 1){
+        if(where.childNodes[0].nodeType==3) where.childNodes[0].remove()
+      }
+      let a=where.childNodes
+      if(a.childNodes.length!=1) {
+        deleteTextNodesRecursive(a)
+      }
+    }
+  
 }
 
 /*
