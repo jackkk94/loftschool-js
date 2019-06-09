@@ -7,9 +7,9 @@
  Посмотрите как работает forEach и повторите это поведение для массива, который будет передан в параметре array
  */
 function forEach(array, fn) {
-  for(var i=0;i<array.length;i++){
-    fn(array[i],i,array);
-  }
+    for (var i=0;i<array.length;i++) {
+        fn(array[i], i, array);
+    }
 
 }
 
@@ -20,11 +20,13 @@ function forEach(array, fn) {
  Посмотрите как работает map и повторите это поведение для массива, который будет передан в параметре array
  */
 function map(array, fn) {
-  var arr=[];
-  for(var i=0;i<array.length;i++){
-    arr.push(fn(array[i],i,array))
-  }
-  return arr;
+    var arr=[];
+
+    for (var i=0;i<array.length;i++) {
+        arr.push(fn(array[i], i, array))
+    }
+
+    return arr;
 }
 
 /*
@@ -34,19 +36,20 @@ function map(array, fn) {
  Посмотрите как работает reduce и повторите это поведение для массива, который будет передан в параметре array
  */
 function reduce(array, fn, initial='undefined') {
-  var arr=[];
-  var value;
-  var i=0;
-  if(initial=='undefined') 
-  {
-    value=array[0];
-    i+=1;
-  }
-  else value=initial;
-  for(var i;i<array.length;i++){
-    value = fn(value,array[i],i,array)
-  }
-  return value;
+    var value;
+    var i=0;
+
+    if (initial=='undefined') {   
+        value=array[0];
+        i+=1;
+    } else {
+        value=initial;
+    }
+    for (i;i<array.length;i++) {
+        value = fn(value, array[i], i, array)
+    }
+
+    return value;
 }
 
 /*
@@ -55,14 +58,18 @@ function reduce(array, fn, initial='undefined') {
  Функция должна перебрать все свойства объекта, преобразовать их имена в верхний регистр и вернуть в виде массива
 
  Пример:
-   upperProps({ name: 'Сергей', lastName: 'Петров' }) вернет ['NAME', 'LASTNAME']
+     upperProps({ name: 'Сергей', lastName: 'Петров' }) вернет ['NAME', 'LASTNAME']
  */
 function upperProps(obj) {
-  var arr=[];
-  for(var i in obj){
-    arr.push(i.toUpperCase())
-  }
-  return arr;
+    var arr=[];
+
+    for (var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+            arr.push(i.toUpperCase())
+        }
+    }
+
+    return arr;
 }
 
 /*
@@ -72,13 +79,19 @@ function upperProps(obj) {
  Посмотрите как работает slice и повторите это поведение для массива, который будет передан в параметре array
  */
 function slice(array, from, to=array.length) {
-  var newarr=[];
-  if(from<0) from = array.length+from;
-  if(to<0) to = array.length+to;
-  for(var i=from;i<to;i++){
-    newarr.push(array[i]);
-  }
-  return newarr;
+    var newarr=[];
+
+    if (from<0) {
+        from = array.length+from;
+    }
+    if (to<0) {
+        to = array.length+to;
+    }
+    for (var i=from;i<to;i++) {
+        newarr.push(array[i]);
+    }
+
+    return newarr;
 }
 
 /*
@@ -87,14 +100,11 @@ function slice(array, from, to=array.length) {
  Функция принимает объект и должна вернуть Proxy для этого объекта
  Proxy должен перехватывать все попытки записи значений свойств и возводить это значение в квадрат
  */
-function createProxy(obj) {
-}
 
 export {
     forEach,
     map,
     reduce,
     upperProps,
-    slice,
-    createProxy
+    slice
 };
