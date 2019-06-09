@@ -61,7 +61,7 @@ function isAllTrue(array, fn) {
 
 function isSomeTrue(array, fn) {
     try {
-        if (!Array.isArray(array) || (array.length == 0)) {
+        if (!(array instanceof  Array)|| (array.length == 0)) {
             throw new Error('empty array')
         }
         if (typeof (fn) != 'function') {
