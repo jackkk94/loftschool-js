@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const rules = require('./webpack.config.rules');
 const fs = require('fs');
 const path = require('path');
-
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const root = path.resolve('src');
 const files = fs.readdirSync(root)
     .reduce((all, current) => {
