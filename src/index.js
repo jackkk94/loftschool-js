@@ -1,6 +1,4 @@
 /* ДЗ 6 - Асинхронность и работа с сетью */
-
-
 /*
  Задание 1:
 
@@ -10,7 +8,7 @@
    delayPromise(3) // вернет promise, который будет разрешен через 3 секунды
  */
 function delayPromise(seconds) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         setTimeout(() => {
             resolve();
         }, seconds * 1000);
@@ -31,21 +29,24 @@ function delayPromise(seconds) {
    loadAndSortTowns().then(towns => console.log(towns)) // должна вывести в консоль отсортированный массив городов
  */
 function loadAndSortTowns() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         var req = new XMLHttpRequest();
+
         req.open('GET', 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json', true);
-        req.responseType = "json"
+        req.responseType = 'json'
         req.onload = function () {
             let arr=[]
-            for(var i in req.response){
-              arr.push(req.response[i].name)
+
+            for (var i=0;i<req.response.length;i++) {
+                arr.push(req.response[i].name)
             }
-              arr=arr.sort()
-              var arr1=[]
-              for(var i in arr){
-                arr1.push({"name":arr[i]})
-              }
-              resolve(arr1)
+            arr=arr.sort()
+            var arr1=[]
+
+            for (var j=0;j<arr.length;j++) {
+                arr1.push({ 'name': arr[j] })  
+            }
+            resolve(arr1)
         };
         req.send();
     })
