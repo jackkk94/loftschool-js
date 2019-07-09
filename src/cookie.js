@@ -84,12 +84,19 @@ function renderCookie(cookie) {
   var removeBtn = document.querySelectorAll(".deleteBtn")
   removeBtn.forEach(btn => {
     btn.addEventListener('click', function () {
-      let name=this.parentNode.firstChild.textContent
-      document.cookie=`${name}= ; expires = Thu, 01 Jan 1970 00:00:00 GMT`
+      let name = this.parentNode.firstChild.textContent
+      document.cookie = `${name}= ; expires = Thu, 01 Jan 1970 00:00:00 GMT`
       clearTable()
       var data = getCookie()
-      renderCookie(data)
-     
+
+      var arr = []
+      if (filterNameInput.value == "") {
+        arr = data
+      } else (
+        arr = filterCookie(data)
+      )
+      renderCookie(arr)
+
     }
     )
   })
@@ -101,9 +108,24 @@ renderCookie(data)
 
 
 filterNameInput.addEventListener('keyup', function () {
-  // здесь можно обработать нажатия на клавиши внутри текстового поля для фильтрации cookie
+  let data = getCookie()
+
+  let filteredData = filterCookie(data)
+  renderCookie(filteredData)
+
 });
 
+function filterCookie(cookie) {
+  var filteredCookie = []
+  clearTable()
+  cookie.forEach((item) => {
+    if (isMatching(item.name, filterNameInput.value)) {
+      filteredCookie.push(item)
+    }
+  })
+
+  return filteredCookie
+}
 
 
 
@@ -115,7 +137,28 @@ addButton.addEventListener('click', () => {
   document.cookie = addNameInput.value + "=" + addValueInput.value
   clearTable()
   let data = getCookie()
-  renderCookie(data)
+  var arr = []
+  if (filterNameInput.value == "") {
+    arr = data
+  } else (
+    arr = filterCookie(data)
+  )
+
+  renderCookie(arr)
+
 
   // здесь можно обработать нажатие на кнопку "добавить cookie"
 });
+
+
+
+function isMatching(full, chunk) {
+  full = full.toLowerCase();
+  chunk = chunk.toLowerCase();
+  if (full.indexOf(chunk) != -1) {
+    return true
+  }
+
+  return false
+
+}
